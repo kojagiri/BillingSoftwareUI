@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -11,7 +12,8 @@ import Iconify from '../../../components/Iconify';
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const RegisterSchema = Yup.object().shape({
@@ -34,7 +36,7 @@ export default function RegisterForm() {
     validationSchema: RegisterSchema,
     onSubmit: () => {
       if (true) console.log('Registered');
-      else navigate('/dashboard', { replace: true });
+      else router.push('/dashboard', { replace: true });
     }
   });
 
